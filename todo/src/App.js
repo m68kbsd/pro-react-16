@@ -10,11 +10,11 @@ class App extends Component {
     super(props);
     this.state = {
       userName: "thinkpad.co.ke",
-      todoItems: [{ action: "Buy Domain Name", done: true},
-                  { action: "Draw Business plan", done: false},
-                  { action: "Develop Business Application", done: false},
-                  { action: "Get Sample thinkpads for sale", done: false},
-                  { action: "Integrate Payments and Shipping methods to Clients", done: false},
+      todoItems: [{ action: "ReactJS ToDo Application", done: true},
+                  { action: "ReactJS Business Landing page", done: false},
+                  { action: "Develop Financial Proposal", done: false},
+                  { action: "Lenovo Thinkpads are cool", done: true},
+                  { action: "Stripe or Mpesa Integration", done: false},
                   { action: "Host application on Vultr OpenBSD", done: true}],
       showCompleted: true
     }
@@ -44,9 +44,12 @@ class App extends Component {
       ? JSON.parse(data)
       : {
           userName: "Thinkpad Center",
-          todoItems: [{ action: "Buy domain name", done: false},
-                      { action: "Develop business application", done: false},
-                      { action: "Deploy on Vultr", done: false}],
+          todoItems: [{ action: "ReactJS ToDo Application", done: true },
+                      { action: "ReactJS Business Landing page", done: false },
+                      { action: "Develop Financial Proposal", done: false },
+                      { action: "Lenovo Thinkpads are cool", done: true },
+                      { action: "Stripe or Mpesa Integration", done: false },
+                      { action: "Host application on Vultr OpenBSD", done: true }],
           showCompleted: true                      
       });
   }
