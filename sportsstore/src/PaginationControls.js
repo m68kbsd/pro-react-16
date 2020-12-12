@@ -22,12 +22,12 @@ export class PaginationControls extends Component {
             <div className="text-center m-1">
                 <PaginationButtons currentPage={ this.props.currentPage }
                     pageCount={ this.props.pageCount }
-                    navigate={ this.props.navigatePage } />
+                    navigate={ this.props.navigateToPage } />
             </div>
             <div className="form-inline justify-content-center">
                 <select className="form-control"
                     onChange={ this.handlePageSizeChange }
-                    value={ this.pageSizes || this.pageSizes[0] }>
+                    value={ this.props.pageSize || this.pageSizes[0] }>
                     {this.pageSizes.map(s =>
                         <option value={s} key={s}>{s}</option>
                     )}
