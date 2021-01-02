@@ -4,7 +4,7 @@ const chokidar = require("chokidar");
 const cors = require("cors");
 
 const fileName = process.argv[2] || "./data.js";
-const port = process.argv[3] || 8080;
+const port = process.argv[3] || 8000;
 
 let router = undefined;
 
