@@ -29,7 +29,7 @@ const resolveProducts = (products, db) =>
 const resolveOrders = (onlyUnshipped, { page, pageSize, sort}, { db }) => {
     let query = db.get("orders");
     if (onlyUnshipped) { query = query.filter({ shipped: false }) } 
-    if (sort) { query = query.orderby(sort) }
+    if (sort) { query = query.orderBy(sort) }
     return paginateQuery(query, page, pageSize).value()
         .map(order => ({ ...order, products: () =>
             resolveProducts(order.products, db)}));

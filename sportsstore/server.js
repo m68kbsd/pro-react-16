@@ -22,8 +22,8 @@ const createServer = () => {
     setTimeout(() => {
         router = jsonServer.router(fileName.endsWith(".js")
             ? require(fileName)() : fileName);
-        let schema = fs.readFileSync("./serverQueriesResolver.graphql", "utf-8")
-            + fs.readFileSync("./serverMutationsResolver.graphql", "utf-8");
+        let schema = fs.readFileSync("./serverQueriesSchema.graphql", "utf-8")
+            + fs.readFileSync("./serverMutationsSchema.graphql", "utf-8");
         let resolvers = { ...queryResolvers, ...mutationResolvers };
         graph = graphqlHTTP({
             schema: buildSchema(schema), rootValue: resolvers,

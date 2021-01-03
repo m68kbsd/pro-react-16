@@ -16,7 +16,7 @@ var orders = [];
 for (let i=1; i<=103; i++) {
     var fname = faker.name.firstName();var sname = faker.name.lastName();
     var order = {
-        id: 1, name: `${fname} ${sname}`,
+        id: i, name: `${fname} ${sname}`,
         email: faker.internet.email(fname, sname),
         address: faker.address.streetAddress(), city: faker.address.city(),
         zip: faker.address.zipCode(), country: faker.address.country(),
