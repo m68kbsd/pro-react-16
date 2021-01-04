@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { product } from "../../serverQueriesResolver";
 
 export class OrdersRow extends Component {
 
     calcTotal  = (products) => products.reduce((total, p) =>
-        total += p.quantity * p.product.price).toFixed(2)
+        total += p.quantity * p.product.price, 0).toFixed(2)
 
 
     getShipping = order => order.shipped

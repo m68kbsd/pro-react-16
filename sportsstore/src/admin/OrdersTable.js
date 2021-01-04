@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { OrderRow } from "./OrdersRow";
+import { OrdersRow } from "./OrdersRow";
 import { PaginationControls } from "../PaginationControls";
 
 export class OrdersTable extends Component {
@@ -25,7 +25,7 @@ export class OrdersTable extends Component {
                 <tbody>
                     {
                         this.props.orders.map(order =>
-                            <OrderRow key={order.id}
+                            <OrdersRow key={order.id}
                                 order={order} toggleShipped={() =>
                                     this.props.toggleShipped(order.id, !order.shipped)}
                             />
