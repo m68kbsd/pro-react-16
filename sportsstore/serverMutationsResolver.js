@@ -4,7 +4,7 @@ const storeProduct = ({ product }, { db }) =>
 const updateProduct = ({ product }, { db }) => 
     db.get("products").updateById(product.id, product).value();
 
-const deleteProduct = ({ id }, { db }) => db.get("products").removedById(id).value();
+const deleteProduct = ({ id }, { db }) => db.get("products").removeById(id).value();
 
 const shipOrder = ({ id, shipped }, { db }) => 
     db.get("orders").updateById(id, { shipped: shipped}).value();
