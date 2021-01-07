@@ -17,7 +17,7 @@ export const storeProduct = gql`
 `
 export const updateProduct = gql`
     mutation($product: productUpdate) {
-        updateProduct(product: product) {
+        updateProduct(product: $product) {
             id, name, category, description, price
         }
     }
