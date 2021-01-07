@@ -9,14 +9,29 @@ import { ConnectedProducts } from "./ProductsConnector";
 import { ProductEditor } from "./ProductEditor";
 import { ProductCreator } from "./ProductCreator";
 
-const graphQlClient = new ApolloClient({
-    uri: GraphQlUrl
-})
+import { AuthPrompt } from "../auth/AuthPrompt";
+import { authWrapper } from "../auth/AuthWrapper";
 
-export class Admin extends Component {
+// const graphQlClient = new ApolloClient({
+//     uri: GraphQlUrl
+// }
+
+export const Admin = authWrapper(class extends Component {
+
+    constructor(props) {
+        super(props);
+        this.client = new ApolloClient({
+            uri: GraphQlUrl,
+            request: gqloperation => gqloperation.setContext({
+                headers: {
+                    Authorization: `Bearer<${this.props.webToken}>`
+                },
+            })
+        })
+    }
 
     render() {
-        return <ApolloProvider client={ graphQlClient }>
+        return <ApolloProvider client={this.client}>
             <div className="container-fluid">
                 <div className="row">
                     <div className="col bg-info text-white">
@@ -27,16 +42,27 @@ export class Admin extends Component {
                     <div className="col-3 p-2">
                         <ToggleLink to="/admin/orders">Orders</ToggleLink>
                         <ToggleLink to="/admin/products">Products</ToggleLink>
+                        { this.props.isAuthenticated &&
+                            <button onClick={this.props.signout}
+                                className=
+                                "btn btn-block btn-secondary m-2 fixed-bottom col-3">
+                                Log Out
+                            </button>
+                        }
                     </div>
                     <div className="col-9 p-2">
                         <Switch>
-                            <Route path="/admin/orders" component={ OrdersConnector } />
+                            {
+                                !this.props.isAuthenticated &&
+                                    <Route component={ AuthPrompt } />
+                            }
+                            <Route path="/admin/orders" component={OrdersConnector} />
                             <Route path="/admin/products/create"
-                                component={ ProductCreator } />
+                                component={ProductCreator} />
                             <Route path="/admin/products/:id"
-                                component={ ProductEditor } />
+                                component={ProductEditor} />
                             <Route path="/admin/products"
-                                component={ ConnectedProducts } />
+                                component={ConnectedProducts} />
                             <Redirect to="/admin/orders" />
                         </Switch>
                     </div>
@@ -44,4 +70,4 @@ export class Admin extends Component {
             </div>
         </ApolloProvider>
     }
-}
+})
