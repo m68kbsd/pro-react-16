@@ -1,5 +1,5 @@
 input productStore {
-    name: String!, description: String!, price: Float!
+    name: String!, description: String!, category: String!, price: Float!
 }
 
 input productUpdate {
